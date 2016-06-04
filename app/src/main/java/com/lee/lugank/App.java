@@ -13,5 +13,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        //// TODO: 2016/6/4 初始化各种 
     }
 }
