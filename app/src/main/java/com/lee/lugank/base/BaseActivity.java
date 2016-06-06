@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import com.lee.lugank.App;
+
+import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
@@ -13,12 +16,15 @@ import me.yokeyword.fragmentation.SupportActivity;
 public abstract class BaseActivity extends SupportActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         setContentView(getContentViewId());
+        App.getInstance().pushStack(this);
         initView();
         initData();
     }
+
 
     protected abstract void initData();
 
