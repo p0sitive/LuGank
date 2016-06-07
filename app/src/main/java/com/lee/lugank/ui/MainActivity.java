@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.lee.lugank.R;
@@ -12,9 +13,8 @@ import com.lee.lugank.base.BaseFragment;
 import com.lee.lugank.ui.Gank.GankFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener ,BaseFragment.OnFragmentOpenDrawerListener{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BaseFragment.OnFragmentOpenDrawerListener {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -24,7 +24,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
     }
 
     @Override
@@ -39,14 +38,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initView() {
-//        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.aa,R.string.aa);
-//        toggle.syncState();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        drawerLayout.openDrawer(GravityCompat.START);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.aa, R.string.aa);
+        toggle.syncState();
+
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-//        new DrawerBuilder().withActivity(this).build();
 
         GankFragment fragment = findFragment(GankFragment.class);
         start(GankFragment.newInstance());

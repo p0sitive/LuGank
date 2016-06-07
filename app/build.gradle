@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
@@ -28,6 +29,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'me.yokeyword:fragmentation:0.6.1'
     compile 'me.yokeyword:fragmentation-swipeback:0.3.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -38,7 +40,4 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile('com.mikepenz:materialdrawer:5.2.9@aar') {
-        transitive = true
-    }
 }

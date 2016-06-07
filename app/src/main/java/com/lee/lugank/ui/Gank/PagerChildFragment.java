@@ -1,6 +1,7 @@
 package com.lee.lugank.ui.Gank;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.lee.lugank.R;
 import com.lee.lugank.base.BaseFragment;
+import com.lee.lugank.base.RefreshableFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  *
  */
-public class PagerChildFragment extends BaseFragment {
+public class PagerChildFragment extends RefreshableFragment {
     private static final String ARG_FROM = "arg_from";
 
     private int mFrom;
@@ -47,8 +49,7 @@ public class PagerChildFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View onCreateContentView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_pager, container, false);
 
         initView(view);
@@ -92,5 +93,15 @@ public class PagerChildFragment extends BaseFragment {
             items.add(item);
         }
         mAdapter.setDatas(items);
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getRefreshLayout().setRefreshing(false);
+            }
+        },2000);
     }
 }

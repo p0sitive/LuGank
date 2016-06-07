@@ -18,8 +18,8 @@ public abstract class BaseActivity extends SupportActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(getContentViewId());
+        ButterKnife.bind(this);
         App.getInstance().pushStack(this);
         initView();
         initData();
