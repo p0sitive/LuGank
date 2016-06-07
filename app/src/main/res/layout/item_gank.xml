@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:barckground="@android:color/black"
+    tools:context=".ui.MainActivity">
+
+    <ImageView
+        android:id="@+id/icon_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/item_title_icon"
+        android:background="@android:color/background_dark"
+        android:src="@drawable/ic_account_circle_white_48dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/icon_title"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="2"
+            android:textColor="@color/item_title_normore"
+            android:textSize="@dimen/item_title_size"
+            android:textStyle="bold"
+            tools:text="这是一个长长长长长长长长长长长长长长长长长长长的标题"
+            tools:textColor="@color/item_title_readed" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_auther"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_home_white_24dp"
+                android:gravity="center"
+                android:textColor="@color/item_title_normore"
+                android:textSize="@dimen/item_auther_size"
+                tools:text="作者" />
+
+            <TextView
+                android:id="@+id/item_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_home_white_24dp"
+                android:gravity="center"
+                android:textColor="@color/item_title_normore"
+                android:textSize="@dimen/item_auther_size"
+                tools:barckground="@android:color/black"
+                tools:text="作者" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

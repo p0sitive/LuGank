@@ -44,7 +44,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
-        GankFragment fragment = findFragment(GankFragment.class);
         start(GankFragment.newInstance());
     }
 

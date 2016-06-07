@@ -4,30 +4,38 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lee.lugank.R;
-import com.lee.lugank.base.BaseFragment;
 import com.lee.lugank.base.RefreshableFragment;
+import com.lee.lugank.http.GankBean;
+import com.lee.lugank.http.GankRetofit;
+import com.lee.lugank.http.GankService;
+import com.lee.lugank.http.Response;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.yokeyword.fragmentation.anim.DefaultNoAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  *
  */
 public class PagerChildFragment extends RefreshableFragment {
     private static final String ARG_FROM = "arg_from";
-
+    private static final String TAG = "PagerChildFragment";
     private int mFrom;
 
     private RecyclerView mRecy;
     private PagerAdapter mAdapter;
+    private GankItemAdapter gankItemAdapter;
 
     public static PagerChildFragment newInstance(int from) {
         Bundle args = new Bundle();
@@ -68,7 +76,7 @@ public class PagerChildFragment extends RefreshableFragment {
         mAdapter = new PagerAdapter(_mActivity);
         LinearLayoutManager manager = new LinearLayoutManager(_mActivity);
         mRecy.setLayoutManager(manager);
-        mRecy.setAdapter(mAdapter);
+        //mRecy.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new PagerAdapter.OnItemClickListener() {
             @Override
@@ -93,6 +101,35 @@ public class PagerChildFragment extends RefreshableFragment {
             items.add(item);
         }
         mAdapter.setDatas(items);
+
+        //=======
+
+        GankRetofit.getRetrofit()
+                .create(GankService.class)
+                .getAndroid(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<List<GankBean>>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError: " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Response<List<GankBean>> listResponse) {
+                        Log.i(TAG, "onNext: " + listResponse.getResults().get(0));
+                        gankItemAdapter = new GankItemAdapter(getContext(), listResponse.getResults());
+                        mRecy.setAdapter(gankItemAdapter);
+                    }
+                });
+
+
+
     }
 
     @Override
@@ -102,6 +139,6 @@ public class PagerChildFragment extends RefreshableFragment {
             public void run() {
                 getRefreshLayout().setRefreshing(false);
             }
-        },2000);
+        }, 2000);
     }
 }
