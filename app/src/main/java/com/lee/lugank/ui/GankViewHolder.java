@@ -1,4 +1,4 @@
-package com.lee.lugank.ui.Gank;
+package com.lee.lugank.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +31,8 @@ public class GankViewHolder extends RecyclerView.ViewHolder {
 
     public GankViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
         this.context = itemView.getContext();
+        ButterKnife.bind(this, itemView);
     }
 
     public void updataView(GankBean bean) {

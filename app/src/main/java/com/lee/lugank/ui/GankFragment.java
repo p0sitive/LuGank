@@ -1,4 +1,4 @@
-package com.lee.lugank.ui.Gank;
+package com.lee.lugank.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -49,7 +49,7 @@ public class GankFragment extends BaseFragment {
         TabLayout mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         ViewPager mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
-        mToolbar.setTitle("发现");
+        mToolbar.setTitle(R.string.app_name);
         initToolbarNav(mToolbar);
 
         mViewPager.setAdapter(new GankFragmentAdapter(getChildFragmentManager()));

@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+def cmd ='git rev-list HEAD --count'
+def getVersion = cmd.execute().text.trim().toInteger();
+def getReleaseTime(){
+    return new Date().format("yyyy-MM-dd",TimeZone.getTimeZone("UTC"));
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -9,7 +15,7 @@ android {
         applicationId "com.lee.lugank"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1
+        versionCode getVersion
         versionName "1.0"
     }
     buildTypes {
@@ -17,6 +23,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    android.applicationVariants.all{ variant ->
+        variant.outputs.each{ output->
+            def outputFile = output.outputFile
+            if(outputFile != null && outputFile.name.endsWith('.apk')){
+                def fileName = "LuGank-${defaultConfig.versionName}_${defaultConfig.versionCode}-${getReleaseTime()}.apk"
+                output.outputFile = new File(outputFile.parent,fileName)
+            }
+
+        }
+
     }
 }
 

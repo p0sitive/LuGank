@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import com.lee.lugank.R;
 import com.lee.lugank.base.BaseActivity;
 import com.lee.lugank.base.BaseFragment;
-import com.lee.lugank.ui.Gank.GankFragment;
 
 import butterknife.BindView;
 

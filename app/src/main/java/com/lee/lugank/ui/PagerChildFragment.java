@@ -1,4 +1,4 @@
-package com.lee.lugank.ui.Gank;
+package com.lee.lugank.ui;
 
 import android.os.Bundle;
 import android.os.Handler;

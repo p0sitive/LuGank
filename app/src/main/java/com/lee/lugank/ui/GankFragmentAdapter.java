@@ -1,4 +1,4 @@
-package com.lee.lugank.ui.Gank;
+package com.lee.lugank.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

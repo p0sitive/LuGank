@@ -1,4 +1,4 @@
-package com.lee.lugank.ui.Gank;
+package com.lee.lugank.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
