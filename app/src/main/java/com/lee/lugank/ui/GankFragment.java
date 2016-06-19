@@ -19,6 +19,7 @@ import com.lee.lugank.http.Response;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -29,6 +30,12 @@ import rx.schedulers.Schedulers;
  */
 public class GankFragment extends BaseFragment {
     private static final String TAG = "GankFragment";
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.tab_layout)
+    TabLayout mTabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
 
     public static GankFragment newInstance() {
         return new GankFragment();
@@ -39,15 +46,12 @@ public class GankFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
         ButterKnife.bind(this,view);
-        initView(view);
+        initView();
 
         return view;
     }
 
-    private void initView(View view) {
-        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        TabLayout mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        ViewPager mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
+    private void initView() {
 
         mToolbar.setTitle(R.string.app_name);
         initToolbarNav(mToolbar);

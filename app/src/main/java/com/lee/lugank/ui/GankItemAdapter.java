@@ -15,6 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by lihe6 on 2016/6/7.
@@ -46,7 +47,7 @@ public class GankItemAdapter extends RecyclerView.Adapter<GankItemAdapter.ItemVi
         return beanList.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder{
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.icon_title)
         ImageView icon_title;
         @BindView(R.id.tv_title)
@@ -56,11 +57,12 @@ public class GankItemAdapter extends RecyclerView.Adapter<GankItemAdapter.ItemVi
         @BindView(R.id.item_time)
         TextView time;
 
-        Context context;
+        String url;
         GankBean mBean;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void updataView(GankBean bean) {
@@ -68,7 +70,15 @@ public class GankItemAdapter extends RecyclerView.Adapter<GankItemAdapter.ItemVi
             title.setText(mBean.getDesc());
             time.setText(mBean.getPublishedAt());
             auther.setText(mBean.getWho());
+            url = bean.getUrl();
 
         }
+
+        @OnClick(R.id.item)
+        void jump() {
+            WebActivity.startWebActivity(context, url);
+        }
+
+
     }
 }

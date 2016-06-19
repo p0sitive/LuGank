@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 
 public class GankFragmentAdapter extends FragmentPagerAdapter {
-    String[] mTitles = new String[]{"推荐", "热门", "收藏"};
+    String[] mTitles = new String[]{"Android", "iOS", "福利"};
 
     public GankFragmentAdapter(FragmentManager fm) {
         super(fm);
