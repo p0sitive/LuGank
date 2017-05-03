@@ -1,5 +1,6 @@
 package com.lee.lugank.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -44,6 +45,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.setCheckedItem(R.id.nav_home);
 
         start(GankFragment.newInstance());
+
+        navigationView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(MainActivity.this,DrawableActivity.class));
+            }
+        },1000L);
     }
 
     @Override
